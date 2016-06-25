@@ -22,9 +22,11 @@ public class Ping {
     @RequestMapping(value = "/ping" , method = RequestMethod.GET )
     public @ResponseBody String ping() throws IOException {
         final Properties properties = new Properties();
-        properties.load(this.getClass().getResourceAsStream("application.properties"));
-        String projectVersion = properties.getProperty("project.version");
-        return "pong \n Project Version: "+projectVersion;
+        properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
+        String projectVersion = properties.getProperty("version");
+
+        //System.out.println(projectVersion);
+        return "pong \nProject Version : " + projectVersion +"\n";
 
     }
 
