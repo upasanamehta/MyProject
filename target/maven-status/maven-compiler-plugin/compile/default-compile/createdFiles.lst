@@ -1,2 +1,6 @@
 expedia/Application.class
+expedia/service/IService.class
 expedia/http/Ping.class
+expedia/http/CommitPurchase.class
+expedia/service/XMLHttpMessageConverter.class
+expedia/service/CommitPurchaseService.class

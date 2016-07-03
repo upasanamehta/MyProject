@@ -19,14 +19,17 @@ public class Ping {
 
     final static String hello = "hello";
 
+
     @RequestMapping(value = "/ping" , method = RequestMethod.GET )
     public @ResponseBody String ping() throws IOException {
         final Properties properties = new Properties();
+
         properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
         String projectVersion = properties.getProperty("version");
 
-        //System.out.println(projectVersion);
-        return "pong \nProject Version : " + projectVersion +"\n";
+
+
+        return "pong"+ "\n" +"ProjectVersion : " + projectVersion +"\n";
 
     }
 

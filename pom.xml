@@ -34,6 +34,41 @@
             </exclusion>
         </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.expedia.lodging</groupId>
+            <artifactId>lbos-beans</artifactId>
+            <version>1.6.0-17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.expedia.lodging</groupId>
+            <artifactId>lbos-beans</artifactId>
+            <version>1.6.0-17</version>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>org.codehaus.woodstox</groupId>
+            <artifactId>woodstox-core-asl</artifactId>
+            <version>4.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.4.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -55,7 +90,28 @@
                 </executions>
             </plugin>
         </plugins>
-
     </build>
+
+    <repositories>
+        <repository>
+            <id>LodgingDevRepo</id>
+            <name>Expedia Beans1</name>
+            <url>http://nexus.sb.karmalab.net/nexus/content/repositories/lodging-dev</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>LodgingReleaseRepo</id>
+            <name>Expedia Beans2</name>
+            <url>http://nexus.sb.karmalab.net/nexus/content/repositories/lodging-releases</url>
+        </repository>
+
+    </repositories>
 
 </project>
