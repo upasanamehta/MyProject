@@ -1,13 +1,9 @@
 package expedia;
 
-import expedia.http.CommitPurchase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.env.Environment;
 
 import java.util.Arrays;
 
@@ -18,10 +14,10 @@ import java.util.Arrays;
 @SpringBootApplication
 public class Application {
 
-    @Autowired
-    private Environment environment;
+//    @Autowired
+//    private Environment environment;
 
-    private static final Logger logger = LoggerFactory.getLogger(Application.class);
+    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("myLogger");
 
     //private static final String[] validProfiles = {"prod", "qa", "int", "dev"};
 
@@ -32,11 +28,12 @@ public class Application {
         if(profile == null) {
             throw new Exception();
         } */
-
+        logger.debug("Started the spring boot application in debug");
         logger.info("Started the spring boot application");
+
         //System.out.println("Project startup success : profile= " +profile);
         //log.info("Capture startup success: profile={}", profile);
-      //  System.out.println("Let's inspect the beans provided by Spring Boot:");
+        //  System.out.println("Let's inspect the beans provided by Spring Boot:");
 
         String [] beans = context.getBeanDefinitionNames();
         Arrays.sort(beans);
@@ -44,8 +41,8 @@ public class Application {
             System.out.println(beanName);
         }
 
-        
-        
+
+
 
     }
 

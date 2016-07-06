@@ -16,10 +16,6 @@ import java.util.Properties;
 
 @RestController
 public class Ping {
-
-    final static String hello = "hello";
-
-
     @RequestMapping(value = "/ping" , method = RequestMethod.GET )
     public @ResponseBody String ping() throws IOException {
         final Properties properties = new Properties();

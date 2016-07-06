@@ -7,12 +7,12 @@ import com.expedia.e3.ss.lodging.lodginginterface.messages.commitpurchasetypes.d
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import org.joda.time.DateTime;
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.joda.time.DateTime;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,12 +69,12 @@ public class CommitPurchase {
 
     private void logReqRsp(CommitPurchaseRequest commitPurchaseRequest, CommitPurchaseResponse commitPurchaseResponse) {
 
-       // XmlMapper xmlMapper = new XmlMapper();
+        // XmlMapper xmlMapper = new XmlMapper();
         ObjectMapper mapper = new XmlMapper();
-       // ObjectWriter ow = mapper.writer(SerializationFeature.INDENT_OUTPUT);
-       // mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        // ObjectWriter ow = mapper.writer(SerializationFeature.INDENT_OUTPUT);
+        // mapper.enable(SerializationFeature.INDENT_OUTPUT);
         //ObjectWriter ow = mapper.writer().with();
-       String req = null ;
+        String req = null ;
         String rsp = null;
         try {
             req = mapper.writeValueAsString(commitPurchaseRequest);
@@ -84,12 +84,12 @@ public class CommitPurchase {
         }
 
 
-            try {
-                rsp = mapper.writeValueAsString(commitPurchaseResponse);
-               // rsp = ow.writeValueAsString(commitPurchaseResponse);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+        try {
+            rsp = mapper.writeValueAsString(commitPurchaseResponse);
+            // rsp = ow.writeValueAsString(commitPurchaseResponse);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
 
         logger.info("Request :  \n {}" , req);
