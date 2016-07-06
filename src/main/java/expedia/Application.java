@@ -36,7 +36,7 @@ public class Application {
         logger.info("Started the spring boot application");
         //System.out.println("Project startup success : profile= " +profile);
         //log.info("Capture startup success: profile={}", profile);
-        System.out.println("Let's inspect the beans provided by Spring Boot:");
+      //  System.out.println("Let's inspect the beans provided by Spring Boot:");
 
         String [] beans = context.getBeanDefinitionNames();
         Arrays.sort(beans);

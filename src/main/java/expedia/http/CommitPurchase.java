@@ -8,13 +8,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.joda.time.DateTime;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 
 /**
@@ -30,12 +35,17 @@ public class CommitPurchase {
     @RequestMapping(value = "/mp/v1/CommitPurchase"  ,method = RequestMethod.POST  ,
             produces = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE} ,
             consumes = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE})
-    public CommitPurchaseResponse commitPurchase (final CommitPurchaseRequest commitPurchaseRequest){
+    public CommitPurchaseResponse commitPurchase ( @RequestBody @Valid final CommitPurchaseRequest commitPurchaseRequest){
 
 
 
         CommitPurchaseResponse commitPurchaseResponse = new CommitPurchaseResponse();
-        logger.info("hello");
+        logger.info("info");
+        logger.debug("debug");
+        logger.warn("warn");
+        logger.error("error");
+
+        System.out.println(commitPurchaseRequest.getBookingRecordID());
 
         MessageBodyType messageBody = new MessageBodyType();
         messageBody.setAcknowledged(true);
@@ -59,25 +69,31 @@ public class CommitPurchase {
 
     private void logReqRsp(CommitPurchaseRequest commitPurchaseRequest, CommitPurchaseResponse commitPurchaseResponse) {
 
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectWriter ow = mapper.writer().with(printer);
-        String req = null , rsp = null;
+       // XmlMapper xmlMapper = new XmlMapper();
+        ObjectMapper mapper = new XmlMapper();
+       // ObjectWriter ow = mapper.writer(SerializationFeature.INDENT_OUTPUT);
+       // mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        //ObjectWriter ow = mapper.writer().with();
+       String req = null ;
+        String rsp = null;
         try {
-            req = ow.writeValueAsString(commitPurchaseRequest);
+            req = mapper.writeValueAsString(commitPurchaseRequest);
+            //req = ow.writeValueAsString(commitPurchaseRequest);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
-        if(rsp !=null){
+
             try {
-                rsp = ow.writeValueAsString(commitPurchaseResponse);
+                rsp = mapper.writeValueAsString(commitPurchaseResponse);
+               // rsp = ow.writeValueAsString(commitPurchaseResponse);
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
-        }
 
-        logger.debug("Request : \n" , req);
-        logger.debug("Response :\n" , rsp);
+
+        logger.info("Request :  \n {}" , req);
+        logger.info("Response :\n {}" , rsp);
 
 
     }
