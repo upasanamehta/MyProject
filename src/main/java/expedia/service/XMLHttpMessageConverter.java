@@ -14,7 +14,6 @@ public class XMLHttpMessageConverter extends Jaxb2RootElementHttpMessageConverte
     public XMLHttpMessageConverter() {
         List<MediaType> supportedMediaTypes = new ArrayList<>();
         supportedMediaTypes.add(MediaType.APPLICATION_XML);
-        supportedMediaTypes.add(MediaType.APPLICATION_OCTET_STREAM);
         setSupportedMediaTypes(supportedMediaTypes);
     }
 

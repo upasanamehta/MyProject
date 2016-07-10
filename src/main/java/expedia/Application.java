@@ -1,8 +1,9 @@
 package expedia;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;import org.springframework.boot.SpringApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.ApplicationContext;
 
 import java.util.Arrays;
@@ -11,13 +12,14 @@ import java.util.Arrays;
  * Created by umehta on 6/23/16.
  */
 
+@RefreshScope
 @SpringBootApplication
 public class Application {
 
 //    @Autowired
 //    private Environment environment;
 
-    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("myLogger");
+    private static final Logger logger = LoggerFactory.getLogger("myLogger");
 
     //private static final String[] validProfiles = {"prod", "qa", "int", "dev"};
 

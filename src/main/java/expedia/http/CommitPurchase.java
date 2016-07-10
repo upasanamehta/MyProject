@@ -8,10 +8,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +28,7 @@ import javax.validation.Valid;
 @RestController
 public class CommitPurchase {
 
-    private static final Logger logger = LogManager.getLogger(CommitPurchase.class);
+    private static final Logger logger = LoggerFactory.getLogger("myLogger");
     private final MinimalPrettyPrinter printer = new MinimalPrettyPrinter();
 
     @RequestMapping(value = "/mp/v1/CommitPurchase"  ,method = RequestMethod.POST  ,
